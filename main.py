@@ -3,7 +3,7 @@ import asyncio
 import edge_tts
 import os
 
-app = Flask(name)
+app = Flask(__name__)  # Use __name__ here instead of name
 
 @app.route("/api", methods=["GET"])
 def text_to_speech():
@@ -29,5 +29,5 @@ def text_to_speech():
 
     return Response(generate(), mimetype="audio/mpeg")
 
-if name == "main":
+if __name__ == "__main__":  # Corrected here too
     app.run(host="0.0.0.0", port=8000)
